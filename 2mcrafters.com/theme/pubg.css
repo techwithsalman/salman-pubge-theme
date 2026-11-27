@@ -49,3 +49,38 @@ img[src*="salman-pubg-character.png"]:not(.LaptopDive_personImg__AyVly){object-p
  .Universe_universe__nUEuz{background-image:linear-gradient(rgba(20,20,20,.8),rgba(20,20,20,.8)),url('/images/salman/theme/terrain-1280.webp')}
 }
 @media print{.CvSheet_page__1OXym{background:none!important}}
+
+/* Phase 5.1 — approved TV/footer assets and scoped media/phone finishes. */
+.ui_footer__CCdWi{background-image:linear-gradient(rgba(10,12,10,.38),rgba(10,12,10,.55)),url('/images/salman/theme/approved/footer.png');background-position:center;background-size:cover}
+html[data-mv-theme=light] .ui_footer__CCdWi{background-image:linear-gradient(rgba(245,241,232,.88),rgba(245,241,232,.88)),url('/images/salman/theme/approved/footer.png')}
+#offline[data-near=true] .OfflineTV_frame__VYtuy{background:none}
+#offline .OfflineTV_frame__VYtuy:before,#offline .OfflineTV_frame__VYtuy:after{content:none}
+#offline .OfflineTV_photo__yF_PZ{mask-image:none;-webkit-mask-image:none}
+#offline[data-near=true] .OfflineTV_day__KtVe6{background-image:url('/images/salman/theme/approved/tv-day.webp')}
+#offline[data-near=true] .OfflineTV_night__A5a2m{background-image:url('/images/salman/theme/approved/tv-night.webp')}
+/* The supplied composite already includes the CRT. Register its live screen to that opening. */
+#offline .OfflineTV_screen__Wz_nB{left:39.3%;top:37.6%;width:19.5%;height:26%;border-radius:13%/17%}
+#offline h2,#offline p{text-shadow:0 2px 12px rgba(0,0,0,.75)}
+#offline a{background-color:rgba(20,26,17,.86);color:#f5f1e8;border-color:rgba(182,161,123,.8)}
+.PrintGallery_gallery__q5yUU{--ink:#f5f1e8;--ink-60:rgba(245,241,232,.75);--ink-35:rgba(182,161,123,.45)}
+.PrintGallery_window__AF_6C{box-shadow:0 40px 120px rgba(0,0,0,.6),0 0 0 1px rgba(182,161,123,.4)}
+.PrintGallery_toggle__38yZE,.PrintGallery_arrows__Q2DaF button{background:rgba(23,28,19,.85);border-color:#b6a17b;color:#f5f1e8}
+.PrintGallery_toggle__38yZE button[aria-pressed=true]{background:#b6a17b;color:#171b13}
+.PrintGallery_kicker__5yOFc,.PrintGallery_cardMeta__8Er7O{color:#dfb96f}
+.PrintGallery_list__q4kkC,.PrintGallery_post__zFTWb{background:linear-gradient(135deg,rgba(50,58,36,.18),transparent 50%),#141610}
+.PrintGallery_cards__r1RH0 img,.PrintGallery_postFigure__Sj7gI img{outline-color:#b6a17b}
+.PrintGallery_pill__LK6Rs{background:#e5a62b;color:#141414}
+#broadcast [role=tabpanel]{box-shadow:0 20px 55px rgba(0,0,0,.4),0 0 0 1px rgba(182,161,123,.35)}
+#broadcast [role=tab][aria-selected=true]{border-color:#b6a17b;box-shadow:inset 0 -2px #e5a62b}
+html .Reach_dock__3jVfO .Reach_screen__3lYBw{background:linear-gradient(145deg,#29301f,#11150f 58%,#20251a);color:#f5f1e8}
+html .Reach_dock__3jVfO .Reach_status__XOLOT{background:linear-gradient(#242c1d 72%,transparent)}
+html .Reach_dock__3jVfO .Reach_kicker__r5htz{background:#454b35;color:#f5f1e8;box-shadow:inset 0 0 0 1px rgba(182,161,123,.35)}
+html .Reach_dock__3jVfO .Reach_role__hBszW,html .Reach_dock__3jVfO .Reach_list__T7LUX small{color:#d2c8b2}
+html .Reach_dock__3jVfO .Reach_actions__IL57g a,html .Reach_dock__3jVfO .Reach_list__T7LUX{background:#2c3324;color:#efc575}
+html .Reach_dock__3jVfO .Reach_actions__IL57g a:hover{background:#454b35}
+html .Reach_dock__3jVfO .Reach_list__T7LUX a,html .Reach_dock__3jVfO .Reach_more__k8J48{color:#efc575}
+html .Reach_dock__3jVfO .Reach_list__T7LUX li{border-color:rgba(182,161,123,.25)}
+html .Reach_dock__3jVfO .Reach_networks__mz9ry a,html .Reach_dock__3jVfO .Reach_glyph__CGmlv,html .Reach_dock__3jVfO .Reach_answer__MV_uh{background:#b6a17b;color:#171b13}
+html .Reach_dock__3jVfO .Reach_homeBar__L81Kj{background:#b6a17b}
+.Reach_halo__1yMIE{background:radial-gradient(closest-side,rgba(229,166,43,.3),transparent)}
+.Reach_phone__9lNRQ{filter:drop-shadow(0 26px 40px rgba(0,0,0,.7)) drop-shadow(0 0 10px rgba(182,161,123,.3))}
