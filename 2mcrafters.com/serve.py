@@ -5,14 +5,7 @@ import mimetypes
 import re
 import sys
 import json
-import urllib.request
-import urllib.error
 from urllib.parse import urlsplit, parse_qsl, urlencode
-
-class NoFormRedirect(urllib.request.HTTPRedirectHandler):
-    def redirect_request(self, request, fp, code, message, headers, new_url):
-        # Never forward submitted personal data to another destination.
-        return None
 
 PORT = int(sys.argv[1]) if __name__ == "__main__" and len(sys.argv) > 1 else 8081
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
@@ -55,6 +48,23 @@ class RangeHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             pass
 
     def do_GET(self):
+        path = urlsplit(self.path).path
+        # Preserve obsolete files in the checkpoint, but retire their public routes.
+        match = re.match(r"^/mohamedandaloussi/(?:(fr|ar|es)/)?work/([^/]+)(?:/|$)", path)
+        allowed = {'postnexa', 'salman-hridoy', 'tech-with-salman', 'salman-brand', 'toolhubpro', 'salman-creative', 'prompt-library', 'salman-furqan'}
+        destination = None
+        if match and match.group(2) not in allowed:
+            destination = "/mohamedandaloussi/" + ((match.group(1) + "/") if match.group(1) else "") + "work/"
+        elif not path.startswith("/mohamedandaloussi/"):
+            target = self.translate_path(path)
+            if path == "/" or (os.path.isdir(target) and os.path.isfile(os.path.join(target, "index.html"))):
+                destination = "/mohamedandaloussi/"
+        if destination:
+            self.send_response(302)
+            self.send_header("Location", destination)
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
         # Support HTTP Range requests for video/audio streaming
         range_header = self.headers.get("Range")
         if not range_header:
@@ -119,45 +129,13 @@ class RangeHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
 
     def do_POST(self):
-        # The original mail/newsletter PHP backend is an online service, not a
-        # downloadable static asset. Forward only explicit browser submissions
-        # to its original public endpoint. No fake success or stored form data.
-        if urlsplit(self.path).path != "/form-handler.php":
-            self.send_error(405, "This local server only forwards the original contact endpoint")
-            return
-        try:
-            length = int(self.headers.get("Content-Length", "0"))
-            if not 0 < length <= 65536:
-                self.send_error(413, "Invalid form request size")
-                return
-            payload = self.rfile.read(length)
-            json.loads(payload)
-            headers = {"Content-Type": "application/json", "Accept": "application/json"}
-            # Preserve the real origin; do not spoof access-control headers.
-            for name in ("Origin", "Referer", "User-Agent"):
-                if self.headers.get(name):
-                    headers[name] = self.headers[name]
-            request = urllib.request.Request(
-                "https://2mcrafters.com/form-handler.php", data=payload,
-                headers=headers, method="POST"
-            )
-            try:
-                response = urllib.request.build_opener(NoFormRedirect()).open(request, timeout=20)
-            except urllib.error.HTTPError as error:
-                response = error
-            with response:
-                body = response.read(262144)
-                self.send_response(response.status)
-                self.send_header("Content-Type", response.headers.get("Content-Type", "application/json"))
-                self.send_header("Content-Length", str(len(body)))
-                self.end_headers()
-                self.wfile.write(body)
-        except (ValueError, json.JSONDecodeError):
-            self.send_error(400, "Invalid form JSON")
-        except (urllib.error.URLError, TimeoutError):
-            self.send_error(502, "The original online form service is unavailable")
-        except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
-            pass
+        # No remote form backend is configured. Contacts use a reviewed email draft.
+        body = b'{"ok":false,"reason":"Use the email draft workflow; no data was sent."}'
+        self.send_response(405)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
 
     def log_message(self, format, *args):
         # Simple logging without spamming
