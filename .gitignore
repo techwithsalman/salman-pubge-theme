@@ -1,0 +1,7 @@
+# Existing audit evidence and independent recovery copies stay on disk.
+/audit/
+/restoration/
+/backups/
+
+# Checkpoint helper runtime output; never ignore website assets.
+/checkpoints/**/__pycache__/

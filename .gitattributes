@@ -1,0 +1,2 @@
+# Preserve every downloaded/restored file byte-for-byte, including line endings.
+* -text

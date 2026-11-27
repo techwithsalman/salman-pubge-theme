@@ -1,0 +1,93 @@
+RESTORED WEBSITE BASELINE — RECOVERY AND SCOPE
+Date: 27 November 2026
+
+Repository root:
+C:\Users\HP\Downloads\2mcrafters.com
+
+Actual website root:
+C:\Users\HP\Downloads\2mcrafters.com\2mcrafters.com
+
+Baseline commit message:
+Complete original website restoration - stable baseline
+
+Local annotated tag:
+restored-baseline-v1.0
+
+Independent byte-for-byte website backup:
+C:\Users\HP\Downloads\2mcrafters.com\backups\restored-baseline-v1.0\website
+
+Complete local Git recovery bundle:
+C:\Users\HP\Downloads\2mcrafters.com\backups\restored-baseline-v1.0\restored-baseline-v1.0.bundle
+
+The website backup contains all 3,359 restored files (278,008,940 bytes).
+website-manifest.json records each relative path, byte count and SHA-256.
+The independent backup has a copy at ../backup-manifest.json.
+The Git checkpoint additionally stores this inventory and recovery documentation.
+The audit, restoration and backup directories are excluded from Git because they
+contain historical evidence and duplicate recovery material. They are retained
+on disk. The original 342-file pre-restoration backup is also retained.
+
+No website branding, design, content, routes or behaviour was changed to create
+this checkpoint. Git line-ending conversion is disabled. No remote is configured
+or pushed. This is a recovery checkpoint of the verified restored state, with
+the previously documented restoration limitations; it is not a new claim of
+100% matching the live original.
+
+READ-ONLY CHECKS (run in repository root)
+  git show --no-patch --format=fuller restored-baseline-v1.0
+  git status --short
+  git remote -v
+  git bundle verify "backups\restored-baseline-v1.0\restored-baseline-v1.0.bundle"
+
+RECOVER TO A NEW FOLDER — DO NOT OVERWRITE THE WORKING WEBSITE
+Choose a destination that does not already exist. For example, in PowerShell:
+
+  git clone --branch restored-baseline-v1.0 "C:\Users\HP\Downloads\2mcrafters.com\backups\restored-baseline-v1.0\restored-baseline-v1.0.bundle" "C:\Users\HP\Downloads\restored-baseline-v1.0-recovered"
+
+This uses a local file and does not contact or push to an internet repository.
+The recovered website will be in the clone's 2mcrafters.com subdirectory.
+Alternatively, copy the independent website backup into a new empty folder.
+Never merge a backup into a modified site without separately preserving it.
+
+VERIFY RECOVERY
+Compare every recovered file against website-manifest.json using its relative
+path and SHA-256. Do not rely on absolutePath when verifying a different folder.
+The verify_checkpoint.py helper performs this verification for the current
+repository, the independent backup and the committed tag. Its local result is
+written outside the Git tree in restoration/baseline-checkpoint-result.json.
+
+LOCAL SERVER
+Current URL: http://localhost:8081/mohamedandaloussi/
+Server: 2mcrafters.com\serve.py, bound to 127.0.0.1:8081.
+The existing server has been left running; no restart is required now.
+
+For a later recovery, after deciding to stop the existing listener, run:
+  python "C:\Users\HP\Downloads\restored-baseline-v1.0-recovered\2mcrafters.com\serve.py" 8081
+
+Do not start a second server on the occupied port. Do not use file:// URLs.
+Use the included serve.py because it implements restored image-cache mappings,
+video ranges and the original contact endpoint forwarding behaviour.
+Contact/newsletter delivery still depends on the original online PHP service;
+the PHP implementation and its recipient configuration are not in this download.
+No test form message was sent during this checkpoint.
+
+INVENTORY
+branding-inventory.html: readable report with exact paths and category lists.
+branding-inventory.txt: plain text version.
+branding-file-index.tsv: per-file matching categories and first match locations.
+branding-inventory.json: full text match counts/samples, assets, projects, contacts.
+page-metadata-and-content.json: every HTML page's metadata, links and visible text.
+pdf-inventory.json and video-inventory.json: document/media details.
+previews/: read-only visual evidence, separate from website assets.
+
+The helper scripts document how this checkpoint was created. create_backup.py
+is a one-time creation script and intentionally refuses an existing destination.
+It also depends on historical restoration manifests outside this Git checkpoint.
+Do not run the generation scripts as part of ordinary website serving.
+
+FUTURE BRANDING
+The user will provide replacement images/content and approve each section.
+No replacements are authorized by this inventory. Preserve the baseline tag.
+Perform approved changes on a later commit/branch so this checkpoint stays
+recoverable. Compiled Next.js HTML, route data and chunks must remain consistent;
+do not blindly replace names or URLs in serialized Flight records.

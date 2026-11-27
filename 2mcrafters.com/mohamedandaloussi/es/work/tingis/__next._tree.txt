@@ -1,0 +1,7 @@
+:HL["/_next/static/css/a2d3375d0a33a92e.css","style"]
+:HL["/_next/static/css/e12b67bf6b3c3dca.css","style"]
+:HL["/_next/static/css/dbb17032db7cf1cb.css","style"]
+:HL["/_next/static/css/590c58fb86e9cd3d.css","style"]
+:HL["/_next/static/css/973784df2b220cac.css","style"]
+:HL["/_next/static/css/42dcb84817663c22.css","style"]
+0:{"buildId":"lmi3yWqfgw3DU55MXgXiK","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"(standalone)","paramType":null,"paramKey":"(standalone)","hasRuntimePrefetch":false,"slots":{"children":{"name":"mohamedandaloussi","paramType":null,"paramKey":"mohamedandaloussi","hasRuntimePrefetch":false,"slots":{"children":{"name":"lang","paramType":"d","paramKey":"es","hasRuntimePrefetch":false,"slots":{"children":{"name":"work","paramType":null,"paramKey":"work","hasRuntimePrefetch":false,"slots":{"children":{"name":"slug","paramType":"d","paramKey":"tingis","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true}},"isRootLayout":false},"staleTime":300}
